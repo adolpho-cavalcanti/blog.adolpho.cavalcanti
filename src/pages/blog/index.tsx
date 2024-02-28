@@ -54,18 +54,20 @@ const Index = ({ posts = [], preview }) => {
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
+            <b>Observação:</b>
+            {` `}Visualizando no modo de visualização{' '}
             <Link href={`/api/clear-preview`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
+              <button className={blogStyles.escapePreview}>
+                Sair da visualização
+              </button>
             </Link>
           </div>
         </div>
       )}
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
-        <h1>My Notion Blog</h1>
+        <h1>Tutoriais</h1>
         {posts.length === 0 && (
-          <p className={blogStyles.noPosts}>There are no posts yet</p>
+          <p className={blogStyles.noPosts}>Ainda não há postagens</p>
         )}
         {posts.map((post) => {
           return (
@@ -73,7 +75,7 @@ const Index = ({ posts = [], preview }) => {
               <h3>
                 <span className={blogStyles.titleContainer}>
                   {!post.Published && (
-                    <span className={blogStyles.draftBadge}>Draft</span>
+                    <span className={blogStyles.draftBadge}>Lixeira</span>
                   )}
                   <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
                     <a>{post.Page}</a>
@@ -81,10 +83,10 @@ const Index = ({ posts = [], preview }) => {
                 </span>
               </h3>
               {post.Authors.length > 0 && (
-                <div className="authors">By: {post.Authors.join(' ')}</div>
+                <div className="authors">Por: {post.Authors.join(' ')}</div>
               )}
               {post.Date && (
-                <div className="posted">Posted: {getDateStr(post.Date)}</div>
+                <div className="posted">Postado: {getDateStr(post.Date)}</div>
               )}
               <p>
                 {(!post.preview || post.preview.length === 0) &&
